@@ -4,12 +4,12 @@ import styled from "styled-components"
 function Remove() {
     return (
         <>
-                <Link to="/remove">
-                    <Buttton>
-                        <p>-</p>
-                        <p>Nova<br />saída</p>
-                    </Buttton>
-                </Link>
+            <Link to="/remove">
+                <Buttton>
+                    <p>-</p>
+                    <p>Nova<br />saída</p>
+                </Buttton>
+            </Link>
         </>
     )
 }

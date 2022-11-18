@@ -4,12 +4,12 @@ import styled from "styled-components"
 function Add() {
     return (
         <>
-                <Link to="/add">
-                    <Buttton>
-                        <p>+</p>
-                        <p>Nova<br />entrada</p>
-                    </Buttton>
-                </Link>
+            <Link to="/add">
+                <Buttton>
+                    <p>+</p>
+                    <p>Nova<br />entrada</p>
+                </Buttton>
+            </Link>
         </>
     )
 }

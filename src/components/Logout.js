@@ -2,9 +2,9 @@ import axios from "axios"
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import vector from "../assets/Vector.png"
-import UserContext from "../UserContext"
+import UserContext from "../contexts/UserContext"
 
-function Logout (){
+function Logout() {
     const navigate = useNavigate();
     const { token } = useContext(UserContext);
     const URL = "http://localhost:5000/sessions"
@@ -13,18 +13,18 @@ function Logout (){
             "Authorization": `Bearer ${token}`
         }
     }
-    function logout (){
+    function logout() {
         const promise = axios.delete(URL, config)
         promise.then(() => {
-        localStorage.setItem('token', '')
-         navigate('/')
-            
+            localStorage.setItem('token', '')
+            navigate('/')
+
         })
-    
+
         promise.catch((error) => console.log(error.response.data))
     }
 
-    return(
+    return (
         <img alt="logout" src={vector} onClick={logout}></img>
     )
 }
