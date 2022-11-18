@@ -34,7 +34,7 @@ function Login() {
             navigate("/home");
         });
         promise.catch((erro) => {
-            console.log(erro.response.data.message)
+            console.log(erro)
             setIsLoading(false);
 
         });

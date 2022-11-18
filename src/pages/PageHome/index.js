@@ -66,7 +66,7 @@ function Home() {
 
                 <Content>
                     {!record ? (
-                        <p> Não há registros de <br /> entry ou exit</p>
+                        <p> Não há registros de <br /> entrada ou saída</p>
                     ) :
                         <>
                             {record.map((obj, i) =>
