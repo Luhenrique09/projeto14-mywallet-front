@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 function SingUp() {
-    const URL = "http://localhost:5000/sign-up"
+    const URL = "http://localhost:5000/sing-up"
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [name, setName] = useState('')

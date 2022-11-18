@@ -1,8 +1,8 @@
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import styled from "styled-components"
-import vector from "../assets/Vector.png"
 import Add from "../components/Add"
+import Logout from "../components/Logout"
 import Remove from "../components/Remove"
 import UserContext from "../UserContext"
 function Home() {
@@ -21,14 +21,32 @@ function Home() {
         promise.then((resp) => {
             setUser(resp.data.user)
             setRecord(resp.data.record)
-
-
+            
         })
 
         promise.catch((error) => console.log(error.response.data))
 
     }, [])
    
+   
+function balance (){
+  
+    let entry =0, exit=0;
+    for(let j = 0; j < record.length; j++){
+        if(record[j].type === "entrada"){
+            entry += Number(record[j].value)
+        }
+        if(record[j].type === "saida"){
+            exit += Number(record[j].value)
+        }
+    }
+    const total = entry-exit;
+    return total.toFixed(2)
+   
+}
+
+
+    
     return (
         <>
             <Conteiner>
@@ -36,28 +54,32 @@ function Home() {
                     {user && (
                         <h1>Olá, {user.name}</h1>
                     )}
-                    <img alt="logout" src={vector}></img>
+                    <Logout/>
                 </Top>
 
                 <Content>
                     {!record ? (
-                        <p> Não há registros de <br /> entrada ou saida</p>
+                        <p> Não há registros de <br /> entry ou exit</p>
                     ) : 
                     <>
                         {record.map((obj, i) => 
-                        <Div key={i}>
+                        <>
+                        <Div key={i} type={obj.type}>
                             <div>
                             <h2>{obj.date}</h2>
                             <h3>{obj.description}</h3>
                             </div>
                             <h4>{obj.value}</h4>
                         </Div>
+                        <Balance cor={balance()}>
+                        <h2>Saldo</h2>
+                        <h3>{balance()}</h3>
+                    </Balance>
+                    </>
                         )}
                     </>
                     
                     }
-
-
                 </Content>
 
                 <BottomButtons>
@@ -71,10 +93,34 @@ function Home() {
 
 export default Home
 
+const Balance = styled.div`
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    right: 11px;
+    h2{
+        font-family: 'Raleway';
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 20px;
+        color: #000000;
+    }
+    h3{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-size: 17px;
+        line-height: 20px;
+        text-align: right;
+        color: ${props => props.cor < 0 ? 'red' : 'green'};
+    }
+`
+
 const Div = styled.div`
 display: flex;
 justify-content: space-between;
-padding: 23px 11px 10px 12px;
+padding: 10px 11px 0 12px;
 
 div{
     display: flex;
@@ -95,7 +141,7 @@ div{
     line-height: 19px;
  }
  h4{
-    color:green;
+    color:${props => props.type === 'entrada' ? 'green' : 'red'};
     font-family: 'Raleway';
     font-weight: 400;
     font-size: 16px;
@@ -133,6 +179,7 @@ const Content = styled.div`
     height: 446px;
     background: #FFFFFF;
     border-radius: 5px;
+    position: relative;
     p{
         font-family: 'Raleway';
         font-weight: 400;

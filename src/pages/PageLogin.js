@@ -6,7 +6,7 @@ import UserContext from "../UserContext"
 
 function Login() {
     const navigate = useNavigate()
-    const URL = "http://localhost:5000/sign-in"
+    const URL = "http://localhost:5000/sing-in"
     const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
