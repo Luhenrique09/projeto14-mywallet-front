@@ -29,8 +29,10 @@ display: flex;
 justify-content: space-between;
 padding: 10px 11px 0 12px;
 
+
 div{
     display: flex;
+    
 }
  h2{
     color:#C6C6C6;   
@@ -87,6 +89,7 @@ const Content = styled.div`
     background: #FFFFFF;
     border-radius: 5px;
     position: relative;
+  
     p{
         font-family: 'Raleway';
         font-weight: 400;
